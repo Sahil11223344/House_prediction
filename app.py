@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pickle
+import joblib
 import numpy as np
 from datetime import datetime
 
@@ -68,19 +68,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Load the model
 @st.cache_resource
 def load_model():
     try:
-        with open('Housing.pkl', 'rb') as file:
-            model = pickle.load(file)
+        model = joblib.load('Housing.pkl')  # or Housing.joblib
         return model
     except FileNotFoundError:
-        st.error("Model file 'Housing.pkl' not found. Please ensure the file is in the same directory as this script.")
-        st.stop()
-    except Exception as e:
-        st.error(f"Error loading model: {str(e)}")
-        st.stop()
+        st.error("Model file 'Housing.pkl' not found.")
+        return None
 
 # Main app
 def main():

@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pickle
-
+import joblib
 # Page configuration
 st.set_page_config(
     page_title="House Price Predictor",
@@ -38,12 +37,11 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     try:
-        with open('Housing.pkl', 'rb') as file:
-            model = pickle.load(file)
+        model = joblib.load('Housing.pkl')  # or Housing.joblib
         return model
     except FileNotFoundError:
         st.error("Model file 'Housing.pkl' not found.")
-        st.stop()
+        return None
 
 # Main app
 def main():
