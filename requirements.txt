@@ -2,5 +2,5 @@ streamlit
 scikit-learn
 pandas
 numpy
-pickle
 pickle-secure 
+pickle5
