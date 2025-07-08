@@ -30,6 +30,8 @@ st.markdown("""
         color: #2c3e50;
         margin: 0.5rem 0;
     }
+            
+    
 </style>
 """, unsafe_allow_html=True)
 
@@ -98,7 +100,7 @@ def main():
             # Display result
             st.markdown(f'''
             <div class="prediction-result">
-                <h3>Predicted House Price</h3>
+                <h3 id = "predicted-house-price" style = "color:#0b0505" >Predicted House Price</h3>
                 <div class="prediction-price">${prediction:,.2f}</div>
             </div>
             ''', unsafe_allow_html=True)
